@@ -1,6 +1,6 @@
-/*
+/* BITSTREAM 1
  * Continuous beam steering userspace application
- *
+ * 
  * Feeds azimuth/elevation angles to the Linux kernel driver
  * (beamformer.c) via /dev/beamformer device file.
  *
