@@ -13,6 +13,12 @@
 #define PHASE_REG_0        0x08 //check the status reg valued (changed)
 #define STATUS_REG         0x1C
 
+/* For Continous Steering functionality
+   add CMD register for continuous softcore steering
+   Uncomment "%" lines to enable, remove "%" before uncommenting
+   % #define CMD_REG 0x20
+ */
+
 static void __iomem *fpga_base;
 static int major_num;
 
@@ -22,9 +28,13 @@ static ssize_t beamformer_write(struct file *f,
 {
     int angles[2];
     if (copy_from_user(angles, buf, sizeof(angles)))
-	return -EFAULT;
+        return -EFAULT;
     iowrite32(angles[0], fpga_base + STEERING_AZIMUTH);
     iowrite32(angles[1], fpga_base + STEERING_ELEVATION);
+    /* For Continous Steering functionality 
+       also write to CMD_REG for PicoRV32 softcore
+      % iowrite32(angles[0] | (angles[1] << 16), fpga_base + CMD_REG);
+     */
     printk(KERN_INFO "Beamformer: az=%d el=%d\n", angles[0], angles[1]);
     return len;
 }
@@ -34,8 +44,8 @@ static ssize_t beamformer_read(struct file *f,
                                size_t len, loff_t *off)
 {
     int status = ioread32(fpga_base + STATUS_REG);
-    if( copy_to_user(buf, &status, sizeof(int)))
-	return -EFAULT;
+    if(copy_to_user(buf, &status, sizeof(int)))
+        return -EFAULT;
     return sizeof(int);
 }
 
