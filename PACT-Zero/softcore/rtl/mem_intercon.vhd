@@ -23,6 +23,12 @@ entity mem_intercon is
 
         phase_valid : buffer std_logic;
         phase_ready : in std_logic
+
+        -- for continous steering functionality 
+        -- add cmd_reg port when cmd_reg.vhd is ready
+        -- Uncomment "%" lines to enable
+        -- % cmd_valid : buffer std_logic;
+        -- % cmd_ready : in std_logic
     );
 end entity;
 
@@ -33,6 +39,9 @@ begin
         ram_valid <= '0';
         uart_valid <= '0';
         phase_valid <='0';
+    
+        -- for continous steering functionality 
+        -- % cmd_valid <= '0';
 
         if mem_valid = '1' then
             
@@ -44,6 +53,13 @@ begin
 
             elsif mem_addr = x"20000000" then
                 phase_valid <= '1';
+
+            -- Uncomment to enable continuous steering
+            -- Requires: cmd_reg.vhd to be implemented
+            -- uncomment lines with "%" to enable
+            -- % elsif mem_addr = x"20000004" then
+            -- %     cmd_valid <= '1';
+            
             end if;
         end if;
     end process ;
@@ -51,6 +67,10 @@ begin
     mem_ready <= ram_ready when ram_valid = '1' else
                  uart_ready when uart_valid = '1' else
                 phase_ready when phase_valid = '1' else
+                 -- for continous steering functionality 
+                 -- add cmd_ready when cmd_reg.vhd ready
+                 -- uncomment lines with "%" to enable
+                 -- % cmd_ready  when cmd_valid   = '1' else
                 '0' ;
 
     mem_rdata <= ram_rdata when ram_valid = '1' else
