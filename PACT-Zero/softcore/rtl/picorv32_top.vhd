@@ -35,6 +35,11 @@ signal uart_ready : std_logic ;
 signal phase_valid : std_logic;
 signal phase_ready : std_logic ;
 
+-- for continous steering functionality 
+--  add cmd_reg signals when cmd_reg.vhd is ready
+-- Uncomment "%" lines to enable , remove "%" before uncommenting 
+-- % signal cmd_valid : std_logic;
+-- % signal cmd_ready : std_logic;
 
 begin
     cpu : entity work.picorv32
@@ -94,6 +99,15 @@ begin
 
         phase_valid => phase_valid,
         phase_ready => phase_ready
+
+        --for continous steering functionality
+        -- add cmd_reg connections when ready
+        -- Uncomment "%" lines to enable
+        -- remove "%" before uncommenting
+        -- add ',' to line above before uncommenting
+        -- % cmd_valid => cmd_valid,
+        -- % cmd_ready => cmd_ready
+        
     );
 
     ram_inst : entity work.ram
@@ -133,6 +147,17 @@ begin
         azimuth_out =>  azimuth_out,
         elevation_out => elevation_out
     );
+
+     --for continous steering functionality
+    -- instantiate cmd_reg here when ready
+    -- Uncomment "%" lines to enable , remove "%" before uncommenting
+    -- % cmd_inst : entity work.cmd_reg
+    -- %     port map (
+    -- %         clk       => clk,
+    -- %         valid     => cmd_valid,
+    -- %         rdata     => mem_rdata,
+    -- %         ready     => cmd_ready
+    -- %     );
 
     
 
