@@ -1,0 +1,3 @@
+[submodule "PACT-Zero/softcore/core"]
+	path = PACT-Zero/softcore/core
+	url = https://github.com/sonixaman/picorv32
