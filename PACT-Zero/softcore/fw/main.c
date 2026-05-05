@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 #define UART_TX (*(volatile unsigned int*)0x10000000)
 #define PHASE_REG (*(volatile unsigned int*)0x20000000)
 
