@@ -6,11 +6,11 @@
 #include <linux/io.h>
 
 #define DRIVER_NAME    "beamformer"
-#define FPGA_BASE      0x40000000
+#define FPGA_BASE      0x40000000  // PL AXI slave port #0 (see section / DS190 / pg22 / Memory Map /table 6)
 #define FPGA_SIZE      0x1000
 #define STEERING_AZIMUTH   0x00
 #define STEERING_ELEVATION 0x04
-#define PHASE_REG_0        0x08 //check the status reg valued (changed)
+#define PHASE_REG_0        0x08 //check the status reg valued (confirm change)
 #define STATUS_REG         0x1C
 
 /* For Continous Steering functionality
