@@ -106,8 +106,7 @@ PACT-Zero/
 │   └── offset_reg.vhd              ← Config B: memory-mapped offset registers
 │
 ├── tb/                             ← Simulation only (not synthesisable)
-│   ├── tb_top_pact_zero.vhd        ← Config A testbench (SPI TEST PASSED ✅)
-│   ├── tb_picorv32.vhd             ← Config B testbench
+│   ├── tb_top_pact_zero.vhd        ← Config A testbench 
 │   ├── ram_simulation.vhd          ← BRAM simulation model (loads firmware.hex)
 │   └── uart_controller.vhd         ← UART simulation stub (prints to Tcl console)
 │
@@ -231,8 +230,8 @@ python3 makehex.py firmware.bin 4096 > firmware.hex
 
 | Component | Details |
 |-----------|---------|
-| FPGA | Xilinx Zynq ZC702 (xc7z020clg484) |
-| Phase Shifter IC | HMC649A (6-bit, 5.625°/step) |
+| FPGA | Xilinx Zynq ZC702 (xc7z020clg484) or Basys |
+| Phase Shifter IC | Any 6-bit Phase Shifter IC (5.625°/step) |
 | Array | 2×2 Uniform Planar Array |
 | PS | ARM Cortex-A9 dual-core @ 666MHz |
 | PL Clock | 100MHz |
