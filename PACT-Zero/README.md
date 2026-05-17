@@ -31,7 +31,7 @@ HMC649A Phase Shifter ICs (×4)
     → 2×2 antenna array steered to (az, el)
 ```
 
-**Simulation status: SPI TEST PASSED ✅ in Vivado XSim**
+**Simulation status: Simulated in Vivado XSim, Complete Functionality Simulated (Input Target Angle -> Sending SPI pipeline command)**
 
 ---
 
