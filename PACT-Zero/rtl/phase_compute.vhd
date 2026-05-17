@@ -29,6 +29,11 @@ architecture rtl of phase_compute is
     signal offset_11_int : signed(15 downto 0) := (others=>'0');
 
     --cordic connections and calculation requirements
+    
+    --scaling signals
+    signal az_scaled : signed(15 downto 0);
+    signal el_scaled : signed(15 downto 0);
+    
     --declration for angles 
     signal azi_plus_ele : std_logic_vector(15 downto 0);
     signal azi_min_ele  : std_logic_vector(15 downto 0);
@@ -46,8 +51,10 @@ architecture rtl of phase_compute is
     signal cos_ele   : std_logic_vector(15 downto 0); --not required
 
 begin 
-    azi_plus_ele <= std_logic_vector(signed(steering_azimuth) + signed(steering_elevation));
-    azi_min_ele  <= std_logic_vector(signed(steering_azimuth) - signed(steering_elevation));
+    az_scaled <= resize(signed(steering_azimuth)* 182, 16);
+    el_scaled <= resize(signed(steering_elevation)* 182, 16);
+    azi_plus_ele <= std_logic_vector(az_scaled + el_scaled);
+    azi_min_ele  <= std_logic_vector(az_scaled - el_scaled);
     -- cordic instantiation 
     CORDIC_AZI_PLUS_ELE : entity work.cordic_calc
     port map 
@@ -72,7 +79,7 @@ begin
     (
         clk => clk,
         reset => reset,
-        phase_input => steering_elevation,
+        phase_input => std_logic_vector(el_scaled),
         sin_value => sin_ele,
         cos_value => cos_ele
     );
@@ -103,9 +110,9 @@ begin
     end process;
     --linking the outputs with signals
     offset_00 <= (others => '0');  -- always 0
-    offset_10 <= std_logic_vector(offset_10_int(15 downto 8));
-    offset_01 <= std_logic_vector(offset_01_int(15 downto 8));
-    offset_11 <= std_logic_vector(offset_11_int(15 downto 8));
+    offset_10 <= std_logic_vector(offset_10_int(7 downto 0));
+    offset_01 <= std_logic_vector(offset_01_int(7 downto 0));
+    offset_11 <= std_logic_vector(offset_11_int(7 downto 0));
 end architecture;
                 
 
