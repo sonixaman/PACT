@@ -7,7 +7,9 @@ SECTIONS {
 		*(.text.start)
 		*(.text*)
 	} > RAM
-
+	.rodata : {
+		  *(.rodata*)
+	} > RAM
 	.data : {
 		*(.data*)
 	} > RAM
@@ -16,3 +18,4 @@ SECTIONS {
 		*(.bss*)
 	} > RAM
 }
+
