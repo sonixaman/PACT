@@ -11,7 +11,7 @@ A modular FPGA-based phased array beamforming platform designed for real-time be
 
 Entry-level configuration implementing a 2×2 Uniform Planar Array beamformer on Zynq ZC702. Demonstrates dual beamforming approaches — hardware CORDIC pipeline and PicoRV32 softcore — with full PS/PL integration via AXI4-Lite and Linux kernel driver.
 
-→ [See PACT-Zero documentation](./PACT-Zero/README.md)
+→ [See PACT-Zero documentation](./PACT-Zero/)
 
 ---
 
