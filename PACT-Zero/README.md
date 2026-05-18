@@ -1,4 +1,4 @@
-# PACT-Zero — Phased Array Control & Tracking
+# PACT-Zero — Phased Array Control & Transceiver
 
 A 2×2 Uniform Planar Array beamformer implemented on **Zynq ZC702** FPGA, targeting phased array signal processing for detector electronics applications.
 
