@@ -5,15 +5,15 @@
  * (beamformer.c) via /dev/beamformer device file.
  *
  * Usage:
- *   gcc -o input input.c
- *   ./input                              <- manual input
+ *   gcc -o input_app input.c
+ *   ./input_app                             <- manual input
  *   echo "30 20" | ./input               <- single command
  *   cat angles.txt | ./input             <- sequence from file
  * 
  *
  * Note: This uses the Linux PS driver path (beamformer.c).
- * The PicoRV32 softcore path (softcore/fw/main.c) uses
- * hardcoded values for simulation verification.
+ * 
+ * 
  */
 
 #include <stdio.h>
